@@ -61,7 +61,86 @@ Las transacciones son útiles cuando necesitas:
 ## Ventajas
 
 - Permiten trabajar con operaciones complejas asegurando que los datos se mantengan coherentes y correctos.
-- Son especialmente útiles para aplicaciones donde la precisión de los datos es crítica (por ejemplo, aplicaciones bancarias o de gestión de inventarios)
+- Son especialmente útiles para aplicaciones donde la precisión de los datos es crítica (por ejemplo, aplicaciones bancarias o de gestión de inventarios).
+
+
+
+## Ejemplo Práctico en la Consola de MongoDB (mongo shell)
+
+Supón que tienes dos colecciones: `cuentas` (cuentas bancarias) y debes transferir dinero de una cuenta a otra.
+
+
+
+## Paso 1: Iniciar la sesión
+
+```js
+js
+const session = db.getMongo().startSession();
+```
+
+
+
+## Paso 2: Iniciar la transacción
+
+```js
+js
+session.startTransaction();
+```
+
+
+
+## Paso 3: Ejecutar operaciones dentro de la sesión
+
+```js
+jsconst cuentas = session.getDatabase("miBanco").cuentas;
+
+// Debita $100 de la cuenta origen
+cuentas.updateOne(
+  { nombre: "Juan" },
+  { $inc: { saldo: -100 } }
+);
+
+// Acredita $100 en la cuenta destino
+cuentas.updateOne(
+  { nombre: "Ana" },
+  { $inc: { saldo: 100 } }
+);
+```
+
+
+
+## Paso 4: Confirmar (commit) o revertir (abort) la transacción
+
+Si todo sale bien:
+
+```js
+js
+session.commitTransaction();
+```
+
+Si ocurre un error por alguna razón:
+
+```js
+js
+session.abortTransaction();
+```
+
+
+
+## Paso 5: Finalizar la sesión
+
+```js
+js
+session.endSession();
+```
+
+
+
+## 5. Aspectos Importantes
+
+- Todas las operaciones en la transacción deben ejecutarse dentro de la misma sesión.
+- Si la red se cae o ocurre un error, puedes reintentar la transacción.
+- Las transacciones pueden involucrar varias colecciones e incluso varias bases de datos dentro del mismo Replica Set.
 
 
 
