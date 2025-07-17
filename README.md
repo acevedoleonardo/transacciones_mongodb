@@ -144,3 +144,134 @@ session.endSession();
 
 
 
+_______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+
+
+# Introducción a Indexación de campos 
+
+
+
+## ¿Qué son Indices?
+
+
+
+En MongoDB, los índices son estructuras de datos que almacenan una representación ordenada de los valores de uno o más campos en una colección. Estos índices se utilizan para acelerar las consultas y mejorar el rendimiento de las operaciones de búsqueda, ayudando al motor de bases de datos a encontrar y acceder a los documentos de manera más eficiente y rápida.
+
+Un índice es como el **índice de un libro**. Si un libro tiene 1,000 páginas y quieres buscar rápidamente todos los temas que hablen de "JavaScript", es mejor tener un índice que te diga en qué páginas aparece...
+
+En MongoDB pasa lo mismo. Si tienes una colección con muchos documentos, un índice te permite **buscar más rápido** en un campo específico. 
+
+
+
+## Ejemplo básico sin índice
+
+Supón que tienes esta colección:
+
+```js
+// Colección: usuarios
+
+{
+  "_id": ObjectId("..."),
+  "nombre": "Carlos",
+  "email": "carlos@example.com",
+  "edad": 25
+}
+```
+
+Tienes 10,000 documentos como ese.
+
+
+
+Ahora haces una consulta:
+
+```js
+CopiarEditar
+
+db.usuarios.find({ email: "carlos@example.com" })
+```
+
+Si **no tienes un índice** en el campo `email`, MongoDB va a revisar uno por uno todos los documentos hasta encontrar el que tenga ese email → esto se llama ***búsqueda secuencial*.**
+
+
+
+## ✅ Crear un índice en el campo `email`
+
+Ahora, si creas un índice en `email`, MongoDB crea una **estructura especial ordenada** para buscar más rápido por ese campo.
+
+
+
+### En Mongo Shell:
+
+```js
+CopiarEditar
+
+db.usuarios.createIndex({ email: 1 }) // 1 significa orden ascendente
+```
+
+Ahora, cada vez que consultes por `email`, MongoDB no buscará uno por uno, sino que irá directo al lugar exacto, como si buscara una palabra en un diccionario.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
