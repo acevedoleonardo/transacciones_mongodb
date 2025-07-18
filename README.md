@@ -293,7 +293,19 @@ db.usuarios.find( {}, {  habilidades: ""});
 
 
 
+### Ejercicio 5,
 
+Elimina el índice compuesto `{ ciudad: 1, edad: -1 }` y crea uno nuevo que sea `{ edad: 1, ciudad: 1 }`. Explica cuál sería más útil si la mayoría de consultas filtran primero por edad.
+
+```
+db.usuarios.dropIndex({  ciudad: 1, edad: -1 });
+
+
+db.usuarios.createIndex( { edad: 1, ciudad: 1});
+
+
+db.usuarios.find( {}, {  edad:1 , ciudad: 1});
+```
 
 
 
