@@ -74,7 +74,6 @@ Supón que tienes dos colecciones: `cuentas` (cuentas bancarias) y debes transfe
 ## Paso 1: Iniciar la sesión
 
 ```js
-js
 const session = db.getMongo().startSession();
 ```
 
@@ -83,7 +82,6 @@ const session = db.getMongo().startSession();
 ## Paso 2: Iniciar la transacción
 
 ```js
-js
 session.startTransaction();
 ```
 
@@ -114,14 +112,12 @@ cuentas.updateOne(
 Si todo sale bien:
 
 ```js
-js
 session.commitTransaction();
 ```
 
 Si ocurre un error por alguna razón:
 
 ```js
-js
 session.abortTransaction();
 ```
 
@@ -130,7 +126,6 @@ session.abortTransaction();
 ## Paso 5: Finalizar la sesión
 
 ```js
-js
 session.endSession();
 ```
 
@@ -145,6 +140,10 @@ session.endSession();
 
 
 _______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+
+
+
 
 
 
@@ -185,11 +184,13 @@ Tienes 10,000 documentos como ese.
 
 Ahora haces una consulta:
 
-```js
-CopiarEditar
 
+
+```js
 db.usuarios.find({ email: "carlos@example.com" })
 ```
+
+
 
 Si **no tienes un índice** en el campo `email`, MongoDB va a revisar uno por uno todos los documentos hasta encontrar el que tenga ese email → esto se llama ***búsqueda secuencial*.**
 
@@ -219,6 +220,10 @@ ________________________________________________________________________________
 
 
 
+
+
+
+
 # Taller de Ejercicios (18/07/2025)
 
 
@@ -228,16 +233,33 @@ Resuelve los siguientes ejercicios usando `mongosh`.
 ### Ejercicio 1
 - Crea un índice sobre el campo `edad` y realiza una consulta de usuarios mayores de 30 años.
 
+  
+
 
 ```js
 db.usuarios.createIndex({ edad:1 });
 
-db.usuario.find({ edad:{ $gt:30} })
-
-
-
+db.usuario.find({ edad:{ $gt:30} });
 
 ```
+
+
+
+### Ejercicio 2
+
+- Crea un índice único sobre el campo "Nombre", intenta insertar un duplicado y verifica el error. 
+
+  
+
+
+```js
+db.usuarios.createIndex({nombre:1} , {unique: true}); 
+
+db.usuarios.insertOne([nombre: "camilo"]); 
+
+```
+
+
 
 
 
