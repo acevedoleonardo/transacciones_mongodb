@@ -1,8 +1,8 @@
-# Transacciones en MongoDB 
+# MongoDB Investigación
 
 
 
-## ¿Qué son las transacciones en MongoDB?
+## ¿Qué son las transacciones en MongoDB? (16/07/2025)
 
 Una **transacción en MongoDB** es una secuencia de operaciones (lecturas y escrituras) que se ejecutan como una única unidad lógica de trabajo. El principal objetivo de las transacciones es garantizar que todas las operaciones agrupadas se completen satisfactoriamente y, si alguna falla, se revierten todas, asegurando la integridad y consistencia de los datos.
 
@@ -148,7 +148,7 @@ ________________________________________________________________________________
 
 
 
-# Introducción a Indexación de campos 
+# Introducción a Indexación de campos (17/07/2025)
 
 
 
@@ -215,7 +215,29 @@ Ahora, cada vez que consultes por `email`, MongoDB no buscará uno por uno, sino
 
 
 
+_______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
 
+
+
+# Taller de Ejercicios (18/07/2025)
+
+
+
+Resuelve los siguientes ejercicios usando `mongosh`.
+
+### Ejercicio 1
+- Crea un índice sobre el campo `edad` y realiza una consulta de usuarios mayores de 30 años.
+
+
+```js
+db.usuarios.createIndex({ edad:1 });
+
+db.usuario.find({ edad:{ $gt:30} })
+
+
+
+
+```
 
 
 
