@@ -267,7 +267,7 @@ db.usuarios.insertOne([nombre: "camilo"]);
 
 
 
-```
+```js
 db.usuarios.updateMany({}, { $set: { perfil: { ocupacion:"", nivel_estudios:""  }}});
 
 db.usuarios.createIndex( { "perfil.ocupacion": 1});
@@ -278,7 +278,18 @@ db.usuarios.find( {}, {  "perfil.ocupacion":1 });
 
 
 
+### Ejercicio 4,
 
+Crea un índice multikey sobre un array llamado `habilidades` y realiza una consulta que lo use.
+
+```js
+db.usuarios.updateMany({}, { $set: { habilidades: [ "", "" , ""      ]}});
+
+db.usuarios.createIndex( { "habilidades": 1});
+
+
+db.usuarios.find( {}, {  habilidades: ""});
+```
 
 
 
