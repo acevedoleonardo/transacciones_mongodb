@@ -261,7 +261,20 @@ db.usuarios.insertOne([nombre: "camilo"]);
 
 
 
+### Ejercicio 3,
 
+* Agrega un campo embebido llamado `perfil` con los subcampos `ocupacion` y `nivel_estudios`. Crea un índice sobre `perfil.ocupacion` y realiza una consulta.
+
+
+
+```
+db.usuarios.updateMany({}, { $set: { perfil: { ocupacion:"", nivel_estudios:""  }}});
+
+db.usuarios.createIndex( { "perfil.ocupacion": 1});
+
+
+db.usuarios.find( {}, {  "perfil.ocupacion":1 });
+```
 
 
 
